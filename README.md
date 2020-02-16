@@ -1,16 +1,12 @@
 # YOLO ROS: Real-Time Object Detection for ROS
 
-# Vortex specific section
-
-If you do not have cuda add touch /path/to/catkin\_ws/your/package/CATKIN\_IGNORE to this package.
-
 ## Overview
 
 This is a ROS package developed for object detection in camera images. You only look once (YOLO) is a state-of-the-art, real-time object detection system. In the following ROS package you are able to use YOLO (V3) on GPU and CPU. The pre-trained model of the convolutional neural network is able to detect pre-trained classes including the data set from VOC and COCO, or you can also create a network with your own detection objects. For more information about YOLO, Darknet, available training data and training YOLO see the following link: [YOLO: Real-Time Object Detection](http://pjreddie.com/darknet/yolo/).
 
 The YOLO packages have been tested under ROS Melodic and Ubuntu 18.04. This is research code, expect that it changes often and any fitness for a particular purpose is disclaimed.
 
-**Author: [Marko Bjelonic](http://www.markobjelonic.me), marko.bjelonic@mavt.ethz.ch**
+**Author: [Marko Bjelonic](https://www.markobjelonic.com), marko.bjelonic@mavt.ethz.ch**
 
 **Affiliation: [Robotic Systems Lab](http://www.rsl.ethz.ch/), ETH Zurich**
 
@@ -102,8 +98,10 @@ And weights from the VOC data set can be found here:
 
 And the pre-trained weight from YOLO v3 can be found here:
 
-    wget http://pjreddie.com/media/files/yolov3-voc.weights
+    wget http://pjreddie.com/media/files/yolov3-tiny.weights
     wget http://pjreddie.com/media/files/yolov3.weights
+
+There are more pre-trained weights from different data sets reported [here](https://pjreddie.com/darknet/yolo/).
 
 ### Use your own detection objects
 

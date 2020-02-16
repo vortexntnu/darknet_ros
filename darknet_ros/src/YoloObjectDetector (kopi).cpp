@@ -8,7 +8,6 @@
 
 // yolo object detector
 #include "darknet_ros/YoloObjectDetector.hpp"
-#include <iterator>
 
 // Check for xServer
 #include <X11/Xlib.h>
@@ -358,14 +357,6 @@ void *YoloObjectDetector::detectInThread()
     float xmax = dets[i].bbox.x + dets[i].bbox.w / 2.;
     float ymin = dets[i].bbox.y - dets[i].bbox.h / 2.;
     float ymax = dets[i].bbox.y + dets[i].bbox.h / 2.;
-    float xpos = xmin;
-    float ypos = ymin;
-    float fwidth = dets[i].bbox.w;
-    float fheight = dets[i].bbox.h;
-    float xmid = (xmin+xmax)/2;
-    float ymid = (ymin+ymax)/2;
-    // int num_classes = numClasses_;
-
 
     if (xmin < 0)
       xmin = 0;
@@ -613,10 +604,6 @@ void *YoloObjectDetector::publishInThread()
     msg.header.frame_id = "detection";
     msg.count = num;
     objectPublisher_.publish(msg);
-    int bb_size;
-
-    // std::vector<float> average;
-
 
     for (int i = 0; i < numClasses_; i++) {
       if (rosBoxCounter_[i] > 0) {
@@ -631,19 +618,11 @@ void *YoloObjectDetector::publishInThread()
           boundingBox.Class = classLabels_[i];
           boundingBox.id = i;
           boundingBox.probability = rosBoxes_[i][j].prob;
-          boundingBox.xpos = xmin;
-          boundingBox.ypos = ymin;
-          boundingBox.fwidth = xmax-xmin;
-          boundingBox.fheight = ymax-ymin;
-          boundingBox.xmid = (xmax+xmin)/2;
-          boundingBox.ymid = (ymax+ymin)/2;
-          boundingBox.num_classes = num;
+          boundingBox.xmin = xmin;
+          boundingBox.ymin = ymin;
+          boundingBox.xmax = xmax;
+          boundingBox.ymax = ymax;
           boundingBoxesResults_.bounding_boxes.push_back(boundingBox);
-          bb_size = boundingBoxesResults_.bounding_boxes.size();
-          // if (bb_size > 10) {
-          //   // std::vector<int> slice(boundingBoxesResults_.bounding_boxes(boundingBoxesResults_.bounding_boxes.end() - bb_size, boundingBoxesResults_.bounding_boxes.end()));
-          //   boundingBoxesResults_.bounding_boxes = std::accumulate(boundingBoxesResults_.bounding_boxes.begin(), boundingBoxesResults_.bounding_boxes.end(), (double) 0) / bb_size;
-          // }
         }
       }
     }

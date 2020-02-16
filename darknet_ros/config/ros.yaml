@@ -1,7 +1,8 @@
 subscribers:
 
   camera_reading:
-    topic: /camera/rgb/image_raw
+    topic: /manta/manta/camerafront/camera_image
+    #topic: /camera/front
     queue_size: 1
 
 actions:

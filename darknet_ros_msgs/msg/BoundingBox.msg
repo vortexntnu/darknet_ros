@@ -1,7 +1,10 @@
-string Class
 float64 probability
-int64 xmin
-int64 ymin
-int64 xmax
-int64 ymax
-
+int64 xpos
+int64 ypos
+int64 fwidth
+int64 fheight
+float64 xmid
+float64 ymid
+int16 id
+int16 num_classes
+string Class
