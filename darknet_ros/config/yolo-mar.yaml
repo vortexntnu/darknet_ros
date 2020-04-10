@@ -1,0 +1,15 @@
+yolo_model:
+
+  config_file:
+    name: yolov3_tiny_obj_vortex.cfg
+  weight_file:
+    name: yolo-mar.weights
+  threshold:
+    value: 0.6
+  detection_classes:
+    names:
+      - gate
+      - badge
+      - gman
+
+
